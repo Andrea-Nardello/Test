@@ -2,11 +2,11 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SailHub - Innovazione Minimal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SailHub - Innovazione Mobile Responsive</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
   <style>
-    /* Stile base minimal */
+    /* Base Styling */
     body {
       margin: 0;
       padding: 0;
@@ -14,7 +14,7 @@
       color: #333;
       background: #fff;
     }
-    /* Barra di navigazione */
+    /* Navbar: scrollabile orizzontalmente se necessario */
     nav {
       position: fixed;
       top: 0;
@@ -23,12 +23,14 @@
       padding: 0.5rem;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       z-index: 1000;
+      overflow-x: auto;
+      white-space: nowrap;
     }
     nav ul {
       list-style: none;
-      display: flex;
-      justify-content: center;
+      display: inline-flex;
       margin: 0;
+      padding: 0;
     }
     nav ul li {
       margin: 0 1rem;
@@ -74,20 +76,28 @@
       text-align: center;
       color: #fff;
     }
+    .header-content div {
+      padding: 0 1rem;
+    }
     .header-content h1 {
       font-size: 3rem;
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      margin-bottom: 1rem;
     }
-    /* Sezioni nascoste per default */
+    .header-content p {
+      font-size: 1.2rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    /* Sezioni */
     .section {
       display: none;
       position: relative;
       padding: 2rem 1rem;
+      margin-top: 60px; /* spazio per la navbar fissa */
     }
     .section.active {
       display: block;
     }
-    /* Bottone per tornare alla Home */
     .close-btn {
       position: absolute;
       top: 1rem;
@@ -98,13 +108,11 @@
       cursor: pointer;
       color: #333;
     }
-    /* Contenitore centrale */
     .container {
       max-width: 1200px;
       margin: auto;
       text-align: center;
     }
-    /* Titoli delle sezioni */
     .section h2 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
@@ -113,20 +121,7 @@
       font-size: 1rem;
       margin-bottom: 1rem;
     }
-    /* Griglia di immagini di esempio */
-    .img-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-      justify-items: center;
-    }
-    .img-grid img {
-      width: 100%;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-    /* Cards centralizzate */
+    /* Cards */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -164,6 +159,31 @@
     .btn:hover {
       background: #d18e00;
     }
+    /* Sezione Affitti: immagine ridotta e centrata con overlay titolo */
+    .affitti-header {
+      position: relative;
+      width: 100%;
+      max-width: 200px; /* immagine più piccola */
+      margin: 0 auto 2rem auto;
+    }
+    .affitti-header img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+    }
+    .affitti-header-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-align: center;
+    }
     /* Mappa */
     .map-box {
       width: 100%;
@@ -178,10 +198,35 @@
     .map-box p {
       color: #aaa;
     }
+    /* Media Query per dispositivi mobili */
+    @media (max-width: 768px) {
+      nav ul li {
+        margin: 0 0.5rem;
+      }
+      nav ul li button {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+      }
+      .header-content h1 {
+        font-size: 2.5rem;
+      }
+      .section h2 {
+        font-size: 2rem;
+      }
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      .affitti-header {
+        max-width: 150px;
+      }
+      .affitti-header-overlay {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Barra di navigazione -->
+  <!-- Navbar -->
   <nav>
     <ul>
       <li><button onclick="showSection('home')">Home</button></li>
@@ -193,7 +238,7 @@
     </ul>
   </nav>
 
-  <!-- Home con video di sfondo -->
+  <!-- Home con video di sfondo e descrizione -->
   <section id="home" class="section active">
     <div class="video-background">
       <video autoplay muted loop playsinline>
@@ -202,7 +247,10 @@
       </video>
     </div>
     <div class="header-content">
-      <h1>SailHub</h1>
+      <div>
+        <h1>SailHub</h1>
+        <p>La piattaforma innovativa per la compravendita, regate, assicurazioni e affitti di imbarcazioni.</p>
+      </div>
     </div>
   </section>
 
@@ -211,13 +259,9 @@
     <button class="close-btn" onclick="showSection('home')">&times;</button>
     <div class="container">
       <h2>Compravendita di Imbarcazioni</h2>
-      <!-- Griglia di immagini di esempio -->
       <p>Scopri le nostre imbarcazioni usate, selezionate per qualità e prestazioni.</p>
       <div class="cards">
         <div class="card">
-          <div class = "img-grid"">
-          <img src="ed2cdb4c-2562-40e8-b637-b45db4982ec6%202.JPG" alt="Esempio Barca 1">
-          </div>
           <h3>Barca Usata 1</h3>
           <p>Descrizione breve della barca.</p>
           <a href="#" class="btn">Dettagli</a>
@@ -236,10 +280,6 @@
     <button class="close-btn" onclick="showSection('home')">&times;</button>
     <div class="container">
       <h2>Regate e Competizioni</h2>
-      <div class="img-grid">
-        <img src="https://source.unsplash.com/400x300/?sailing,race" alt="Regata 1">
-        <img src="https://source.unsplash.com/400x300/?sailboat,race" alt="Regata 2">
-      </div>
       <p>Partecipa agli eventi e alle competizioni per metterti alla prova in mare aperto.</p>
       <div class="cards">
         <div class="card">
@@ -261,9 +301,6 @@
     <button class="close-btn" onclick="showSection('home')">&times;</button>
     <div class="container">
       <h2>Assicurazioni per Imbarcazioni</h2>
-      <div class="img-grid">
-        <img src="https://source.unsplash.com/400x300/?insurance,boat" alt="Assicurazione 1">
-      </div>
       <p>Proteggi la tua imbarcazione con le nostre soluzioni assicurative.</p>
       <div class="cards">
         <div class="card">
@@ -280,31 +317,31 @@
     </div>
   </section>
 
-<!-- Sezione Affitti -->
-<section id="affitti" class="section">
-  <button class="close-btn" onclick="showSection('home')">&times;</button>
-  <div class="container">
-    <div class="affitti-header">
-      <img src="4c2267a6-9560-4e0f-8256-949f488bc571%202.jpg" alt="Affitto Imbarcazioni">
-      <div class="affitti-header-overlay">
-         <h2>Affitto Imbarcazioni</h2>
+  <!-- Sezione Affitti -->
+  <section id="affitti" class="section">
+    <button class="close-btn" onclick="showSection('home')">&times;</button>
+    <div class="container">
+      <div class="affitti-header">
+        <img src="4c2267a6-9560-4e0f-8256-949f488bc571%202.jpg" alt="Affitto Imbarcazioni">
+        <div class="affitti-header-overlay">
+          <h2>Affitto Imbarcazioni</h2>
+        </div>
+      </div>
+      <p>Offri o trova l’imbarcazione ideale per i tuoi viaggi o eventi.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Affitta la tua Barca</h3>
+          <p>Metti a disposizione la tua imbarcazione per brevi o lunghi periodi.</p>
+          <a href="#" class="btn">Offri Ora</a>
+        </div>
+        <div class="card">
+          <h3>Cerca Barca</h3>
+          <p>Trova l’imbarcazione perfetta per le tue esigenze.</p>
+          <a href="#" class="btn">Cerca Ora</a>
+        </div>
       </div>
     </div>
-    <p>Offri o trova l’imbarcazione ideale per i tuoi viaggi o eventi.</p>
-    <div class="cards">
-      <div class="card">
-        <h3>Affitta la tua Barca</h3>
-        <p>Metti a disposizione la tua imbarcazione per brevi o lunghi periodi.</p>
-        <a href="#" class="btn">Offri Ora</a>
-      </div>
-      <div class="card">
-        <h3>Cerca Barca</h3>
-        <p>Trova l’imbarcazione perfetta per le tue esigenze.</p>
-        <a href="#" class="btn">Cerca Ora</a>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Sezione Mappa -->
   <section id="mappa" class="section">
