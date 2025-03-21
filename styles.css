@@ -1,0 +1,24 @@
+.affitti-header {
+  position: relative;
+  width: 100%;
+  max-width: 300px; /* Dimensione ridotta */
+  margin: 0 auto 2rem auto;
+}
+.affitti-header img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+.affitti-header-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-align: center;
+}
